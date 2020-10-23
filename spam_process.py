@@ -11,7 +11,7 @@ def get_all_file(dic_path):
 
 
 def read_file(file_path):
-    txt = Path(file_path).read_text()
+    txt = Path(file_path).read_text(encoding="utf-8")
     txt = txt.replace('\n', '')
     txt = txt.replace('.', '')
     process_word(txt)
@@ -25,6 +25,7 @@ def process_word(pre_text):
 def process_lower(text):
     text = [x.lower() for x in text]
     clear_hot_word(text)
+
 
 
 def clear_hot_word(text):
@@ -76,5 +77,5 @@ def process_db(text):
 
 
 if __name__ == '__main__':
-    user_input = input("Enter path to spam files: ")
-    get_all_file(user_input)
+    #user_input = input("Enter path to spam files: ")
+    read_file("test.txt")

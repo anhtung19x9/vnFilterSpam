@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import classcify
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -60,7 +60,14 @@ class Ui_Dialog(object):
         self.resetButton.clicked.connect(self.reset)
     def clickOK(self):
         text=self.contentBox.toPlainText()
-        self.result.setText(text)
+        text = text.replace('\n', '')
+        text = text.replace('.', '')
+        self.contentBox.setText(text)
+        status = classcify.process_word(text)
+        if status==1:
+            self.result.setText("1")
+        else:
+            self.result.setText("0")
     def reset(self):
         self.contentBox.setText("")
         self.result.setText("")
